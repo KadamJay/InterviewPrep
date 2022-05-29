@@ -47,4 +47,4 @@ class countSetBits {
     }
 }
 
-// This code is contributed by Anshika Goyal.
+
