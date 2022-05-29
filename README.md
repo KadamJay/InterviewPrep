@@ -1,2 +1,2 @@
-# competitive-coding-II
+# Software Engineering Interview Preparation 
 Essential SDE Interview Problems and Solutions.
