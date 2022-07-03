@@ -57,11 +57,6 @@ public class ReverseLinkedListII {
         int numNodesToBeReversed = C - B + 1;
         ListNode reversedSegmentHead = reverseList(ptr1, numNodesToBeReversed);
 
-        //prev==null means we started the reversal process from node 1
-        //eg. 1->2->3 start=1, end=2
-        if (prevToPtr1 == null)
-            return reversedSegmentHead;
-
         //connect the first segment of the given list to the reversed segment
         prevToPtr1.next = reversedSegmentHead;
 

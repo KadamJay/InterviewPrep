@@ -47,7 +47,6 @@ public class GenerateAllParanthese {
 //Easy to Understand Solution
 class Solution {
     public int isValid(String a) {
-        String s="()[]{}";
         Stack<Character> stk= new Stack<Character>();
         for(int i=0; i<a.length(); i++){
             char c=a.charAt(i);

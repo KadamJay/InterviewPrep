@@ -22,7 +22,7 @@ public class Palindrome {
 }
 
 class PalindromeSolver{
-    public static int solve(String str){
+    public int solve(String str){
 
         /*
         1. convert the string to lowercase

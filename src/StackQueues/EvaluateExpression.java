@@ -59,7 +59,6 @@ public class EvaluateExpression {
     }
     public static int evalRPN(ArrayList<String> A) {
         Stack<Integer> stack= new Stack<>();
-        int len =A.size();
 
         /*
         Idea is to keep pushing the elements to stack until we encounter an operator.

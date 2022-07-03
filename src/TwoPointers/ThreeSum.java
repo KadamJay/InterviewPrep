@@ -26,7 +26,6 @@ public class ThreeSum {
 
         //test1
         ArrayList<Integer> A = new ArrayList<>(Arrays.asList(-1,2,1,-4));
-        int target=1;
         System.out.println((solver.solve(A,1)));
     }
 }
