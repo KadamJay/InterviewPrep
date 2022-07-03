@@ -30,7 +30,6 @@ import java.util.PriorityQueue;
  */
 public class NMaxPairCombo {
     public static void main(String[] args) {
-        int N=4;
         ArrayList<Integer> A= new ArrayList<>(Arrays.asList(1,4,2,3));
         ArrayList<Integer> B= new ArrayList<>(Arrays.asList(2,5,1,6));
         System.out.println(Arrays.toString(solve(A,B).toArray()));

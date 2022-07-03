@@ -17,15 +17,7 @@ public class Streams {
             int id;
             String name;
             float price;
-
-            public int getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
+            
             public float getPrice() {
                 return price;
             }

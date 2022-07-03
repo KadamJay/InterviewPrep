@@ -6,8 +6,10 @@ package GraphAlgorithms;
 
 // Java program to print BFS traversal from a given source vertex.
 // BFS(int s) traverses vertices reachable from s.
-
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 // This class represents a directed graph using adjacency list
 // representation

@@ -73,14 +73,6 @@ public class ReorderList {
                 dummyHead = dummyHead.next;
             }
         }
-        //in case the original list has odd number of nodes, list1 will have an extra node
-        if (ptr1 != null) {
-            dummyHead.next = ptr1;
-            ptr1 = ptr1.next;
-            dummyHead = dummyHead.next;
-        }
-
-
         return ansHead.next;
     }
 
