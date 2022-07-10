@@ -69,7 +69,7 @@ public class ZigZagLevelOrderTraversal {
         queue.add(root);//added root to Queue to initialize the process.
         boolean addLast=true;//invert flag
 
-         /*
+        /*
         -   q.isEmpty()==false -> While there are nodes in the tree which are unprocessed
         */
 

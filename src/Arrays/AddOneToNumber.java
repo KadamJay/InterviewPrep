@@ -5,7 +5,6 @@ package Arrays;
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Given a non-negative number represented as an array of digits,
@@ -41,7 +40,7 @@ public class AddOneToNumber {
     public static void main(String []args){
 
         int[] arr={2, 3, 7, 11, 15};
-        ArrayList<Integer> a = new ArrayList();
+        ArrayList<Integer> a = new ArrayList<>();
         for(int i=0;i <arr.length;i++){
             a.add(arr[i]);
         }

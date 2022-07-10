@@ -20,7 +20,6 @@ public class GenerateAllParenthesisII {
     public static void main(String[] args) {
         ArrayList<String>res=new ArrayList<>();
         String tempStr="";
-        int open=0,  close=0;
         dfs(3,res,tempStr, 0,0);
         System.out.println(Arrays.toString(res.toArray()));
 

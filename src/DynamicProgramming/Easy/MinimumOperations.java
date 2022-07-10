@@ -45,33 +45,34 @@ import java.util.Scanner;
 
 class MinimumOperations {
     public static void main(String[] args) {
-        /**
-         *  Instead of going from 0 to N we will start reducing the number from N and try to reach to 0.
-         */
-        Scanner src = new Scanner(System.in);
-        int testCases = src.nextInt();
+        try (/**
+                 *  Instead of going from 0 to N we will start reducing the number from N and try to reach to 0.
+                 */
+        Scanner src = new Scanner(System.in)) {
+            int testCases = src.nextInt();
 
-        for (int i = 0; i < testCases; i++) {
-            int n = src.nextInt();
-            int count = 0;
-            while (n != 0) {
+            for (int i = 0; i < testCases; i++) {
+                int n = src.nextInt();
+                int count = 0;
+                while (n != 0) {
 
-                if (n == 0)
-                    break;
-                else if (n % 2 == 0) {
-                    while (n % 2 == 0) {
-                        n = n / 2;
+                    if (n == 0)
+                        break;
+                    else if (n % 2 == 0) {
+                        while (n % 2 == 0) {
+                            n = n / 2;
+                            count++;
+                        }
+                    }
+
+                    if (n % 2 == 1) {
+                        n--;
                         count++;
                     }
                 }
+                System.out.println(count);
 
-                if (n % 2 == 1) {
-                    n--;
-                    count++;
-                }
             }
-            System.out.println(count);
-
         }
     }
 }

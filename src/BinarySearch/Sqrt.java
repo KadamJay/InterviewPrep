@@ -2,8 +2,7 @@ package BinarySearch;
 
 public class Sqrt {
     public static void main(String args[]) {
-        final SqrtSolver solver = new SqrtSolver();
-        System.out.println(solver.solve(17));
+        System.out.println(SqrtSolver.solve(17));
     }
 }
 

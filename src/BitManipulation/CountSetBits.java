@@ -29,7 +29,7 @@ class countSetBits {
      * @param n
      * @return
      */
-    static int countSetBits(int n)
+    static int countSetBitsHelper(int n)
     {
         int count = 0;
         while (n > 0) {
@@ -43,7 +43,7 @@ class countSetBits {
     public static void main(String args[])
     {
         int i = 9;
-        System.out.println(countSetBits(i));
+        System.out.println(countSetBitsHelper(i));
     }
 }
 

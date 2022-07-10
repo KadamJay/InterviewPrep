@@ -23,7 +23,7 @@ class BFS {
      */
 
     // iterative BFS
-    public static void BFS(Graph g) {
+    public static void BFSHelper(Graph g) {
         System.out.println("Running BFS iteratively");
         Set<Integer> visited= new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -70,7 +70,7 @@ class BFS {
         graph.printGraph();
 
         System.out.println("\n\nFollowing is Depth First Traversal");
-        BFS(graph);
+        BFSHelper(graph);
 
     }
 }

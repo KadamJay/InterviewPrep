@@ -32,7 +32,6 @@ public class NobleInteger {
         (adjacent elements in the sorted array) that are same.
         */
         int len=A.size();
-        int ans=-1;
         Collections.sort(A);
 
         for(int i=0; i<len; i++){

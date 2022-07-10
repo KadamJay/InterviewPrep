@@ -33,7 +33,6 @@ import java.util.Arrays;
 public class PalindromePartitioning {
     public static void main(String[] args) {
         String str = "aaba";
-        int len = str.length();
         ArrayList<ArrayList<String>> res = new ArrayList<>();
         ArrayList<String> tempList = new ArrayList<>();
         int start = 0;

@@ -17,6 +17,8 @@ X is the summation of values on each face when all the dice are thrown.
 
 
 */
+package Backtracking.SubsetGeneration;
+
 import java.util.*;
 public class Combo{
 

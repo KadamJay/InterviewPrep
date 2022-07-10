@@ -2,7 +2,6 @@ package Backtracking.SubsetGeneration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * @author jakadam on 2019-12-23
