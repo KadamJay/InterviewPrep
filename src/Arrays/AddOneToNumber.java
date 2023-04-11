@@ -37,7 +37,6 @@ package Arrays;
  */
 
 public class AddOneToNumber {
-
     public int[] plusOne(int[] digits) {
         int len = digits.length;
 
