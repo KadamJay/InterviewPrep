@@ -65,6 +65,7 @@ public class RotateMatrix {
          * 9 6 3
          * 
          */
+
         // step1: transpose the matrix
         int numRows = A.size();
         int numCols = A.get(0).size();
