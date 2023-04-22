@@ -20,41 +20,41 @@ import java.util.Comparator;
  * Make sure the returned intervals are sorted.
  */
 
-
 public class MergeOverlappingIntervals {
     public ArrayList<Interval> merge(ArrayList<Interval> a) {
 
         /*
-            Sort the intervals based on their start and compare the end of lower interval with start of higher interval.
-            If they overlap, compare the ends of both interval to determine the interval range.
-        */
-        Collections.sort(a, new Comparator<Interval>(){
-            public int compare(Interval i1, Interval i2){
-                return i1.start-i2.start;
+         * Sort the intervals based on their start and compare the end of lower interval
+         * with start of higher interval.
+         * If they overlap, compare the ends of both interval to determine the interval
+         * range.
+         */
+        Collections.sort(a, new Comparator<Interval>() {
+            public int compare(Interval i1, Interval i2) {
+                return i1.start - i2.start;
             }
         });
         /*
-            Alternative sorting logic
-            Collections.sort(intervals, (a, b) -> Integer.compare(a.start, b.start));
-        */
+         * Alternative sorting logic
+         * Collections.sort(intervals, (a, b) -> Integer.compare(a.start, b.start));
+         */
 
-        int start =a.get(0).start;
+        int start = a.get(0).start;
         int end = a.get(0).end;
 
         ArrayList<Interval> res = new ArrayList<Interval>();
 
+        int size = a.size();
+        for (int i = 1; i < size; i++) {
 
-        int size=a.size();
-        for(int i=1; i<size; i++){
-
-            Interval cur=a.get(i);
-            //if there is merge, compare end of first and second interval
-            if(cur.start<=end)
-                end=Math.max(cur.end, end);
-            else{//there is no merge
+            Interval cur = a.get(i);
+            // if there is merge, compare end of first and second interval
+            if (cur.start <= end)
+                end = Math.max(cur.end, end);
+            else {// there is no merge
                 res.add(new Interval(start, end));
-                start=cur.start;
-                end=cur.end;
+                start = cur.start;
+                end = cur.end;
             }
         }
         res.add(new Interval(start, end));
@@ -62,5 +62,5 @@ public class MergeOverlappingIntervals {
     }
 }
 /*
-Tested on https://www.interviewbit.com/problems/merge-overlapping-intervals/
-*/
+ * Tested on https://www.interviewbit.com/problems/merge-overlapping-intervals/
+ */
