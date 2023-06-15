@@ -1,78 +1,138 @@
 package GraphAlgorithms;
 
 /**
- * @author jakadam on 2019-12-24
- * <p>
- * Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+
+ Given a reference of a node in a connected undirected graph.
+
+ Return a deep copy (clone) of the graph.
+
+ Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
+
+
+ class Vertex {
+ public int val;
+ public List<Vertex> neighbors;
+ }
+
+ Test case format:
+
+ For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with
+ val == 1, the second node with val == 2, and so on. The graph is represented in the test case using an adjacency list.
+
+ An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of
+ neighbors of a node in the graph.
+
+ The given node will always be the first node with val = 1. You must return the copy of the given node as a reference to
+ the cloned graph.
+
+
+ LC: https://leetcode.com/problems/clone-graph/description/
+
+
  */
 
-/**
- * Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
- */
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
-/**
- * Definition for undirected graph.
- * class UndirectedGraphNode {
- *     int label;
- *     List<UndirectedGraphNode> neighbors;
- *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
- * };
- */
-public class CloneGraph {
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode root) {
-        if (root == null)
-            return root;
+// Definition for a Vertex.
+class Vertex {
+    public int val;
+    public List<Vertex> neighbors;
 
-        //make a copy of the root node, this will be passed as an answer
-        UndirectedGraphNode newRoot = new UndirectedGraphNode(root.label);
+    public Vertex(int val, List<Vertex> neighbors) {
+        this.val = val;
+        this.neighbors = neighbors;
+    }
 
-        /**
-         * In order to clone the graph, we need to search it completely.
-         * We have 2 options, BFS and DFS
-         * As we want to maintain the relationships among the nodes in the form of Edges, BFS seems more
-         * intuitive than DFS. We will explore the graph level by level. DFS can also be used.
-         */
-        // Initialize a queue for BFS traversal
-        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+    public Vertex(int val) {
+        this.val = val;
+        this.neighbors = new ArrayList<>();
+    }
 
-        // To keep track of visited(cloned) nodes, initialize a hashMap
-        // We can use a map<int,UndirectedGraphNode> but what if the graph has 2 nodes with same label,
-        // hence use Map<UndirectedGraphNode,UndirectedGraphNode> => Map<Cloned Node, Original Node>
-        Map<UndirectedGraphNode, UndirectedGraphNode> visitedMap = new HashMap<>();
+    public Vertex() {
+        this.val = 0;
+        this.neighbors = new ArrayList<>();
+    }
+}
 
+class CloneGraph {
+    public Vertex cloneGraph(Vertex node) {
+        if (node == null)
+            return null;
 
-        // add the root to the queue and map
-        queue.add(root);
-        visitedMap.put(root, new UndirectedGraphNode(root.label));
+        Vertex copy = new Vertex(node.val);
+        Vertex[] visited = new Vertex[101];
+        Arrays.fill(visited, null);
 
-        // start exploring/ cloning using BFS
+        dfs(node, copy, visited);
+
+        return copy;
+    }
+
+    private void dfs(Vertex node, Vertex copy, Vertex[] visited) {
+        visited[copy.val] = copy;
+
+        for (Vertex neighbor : node.neighbors) {
+            if (visited[neighbor.val] == null) {
+                Vertex newNeighbor = new Vertex(neighbor.val);
+                copy.neighbors.add(newNeighbor);
+                dfs(neighbor, newNeighbor, visited);
+            } else {
+                copy.neighbors.add(visited[neighbor.val]);
+            }
+        }
+    }
+}
+
+class CloneGraphTest {
+    public static void main(String[] args) {
+        CloneGraph solution = new CloneGraph();
+
+        // Create the graph: 1 -- 2
+        //                   |    |
+        //                   4 -- 3
+        Vertex node1 = new Vertex(1);
+        Vertex node2 = new Vertex(2);
+        Vertex node3 = new Vertex(3);
+        Vertex node4 = new Vertex(4);
+
+        node1.neighbors.add(node2);
+        node1.neighbors.add(node4);
+        node2.neighbors.add(node1);
+        node2.neighbors.add(node3);
+        node3.neighbors.add(node2);
+        node3.neighbors.add(node4);
+        node4.neighbors.add(node1);
+        node4.neighbors.add(node3);
+
+        Vertex clonedGraph = solution.cloneGraph(node1);
+
+        // Verify the cloned graph
+        System.out.println("Original Graph:");
+        printGraph(node1);
+
+        System.out.println("Cloned Graph:");
+        printGraph(clonedGraph);
+    }
+
+    private static void printGraph(Vertex node) {
+        Set<Vertex> visited = new HashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
+        queue.offer(node);
+        visited.add(node);
+
         while (!queue.isEmpty()) {
-            // dequeue the original node from the queue, we are going to process its neighbouring nodes
-            UndirectedGraphNode originalNode = queue.poll();
+            Vertex currNode = queue.poll();
+            System.out.print(currNode.val + " Neighbors: ");
 
-            for (UndirectedGraphNode neighbour : originalNode.neighbors) {
-
-                // check if the neighbour node is already cloned, if not process it
-                if (!visitedMap.containsKey(neighbour)) {
-                    // add it to neighbour map along with its clone as value
-                    visitedMap.put(neighbour, new UndirectedGraphNode(neighbour.label));
-
-                    // add it queue for further processing
-                    queue.add(neighbour);
+            for (Vertex neighbor : currNode.neighbors) {
+                System.out.print(neighbor.val + " ");
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.offer(neighbor);
                 }
-
-                /**
-                 * we are going to populate the neighbour list of the clone of originalNode
-                 */
-                visitedMap.get(originalNode)// get the cloned node
-                        .neighbors.add(visitedMap.get(neighbour));// add the neighbour to the clonedNodes neighbour list
-            }// for loop end
-        }// while loop end
-        return visitedMap.get(root);
+            }
+            System.out.println();
+        }
     }
 }

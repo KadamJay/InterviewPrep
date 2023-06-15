@@ -48,6 +48,18 @@ public class DFSRecursive {
         dfs.addEdge(2, 4);
         dfs.addEdge(2, 5);
 
+
+    /*
+            0
+           / \
+          1   2
+         /   / \
+        3   4   5
+
+    */
+
+
+
         System.out.println("Depth-First Traversal (starting from vertex 0):");
         List<Integer> traversal = dfs.dfs(0);
         for (int vertex : traversal) {

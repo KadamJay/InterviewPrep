@@ -58,6 +58,15 @@ public class BFS {
         bfs.addEdge(2, 4);
         bfs.addEdge(2, 5);
 
+        /*
+                0
+               / \
+              1   2
+             /   / \
+            3   4   5
+
+        */
+
         System.out.println("Breadth-First Traversal (starting from vertex 0):");
         List<Integer> traversal = bfs.bfs(0);
         for (int vertex : traversal) {
@@ -66,6 +75,8 @@ public class BFS {
         System.out.println();
     }
 }
+
+
 
 /**
  * https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/

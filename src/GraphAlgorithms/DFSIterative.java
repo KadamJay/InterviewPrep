@@ -49,11 +49,22 @@ public class DFSIterative {
 
     public static void main(String[] args) {
         DFSIterative dfs = new DFSIterative(6);
+
         dfs.addEdge(0, 1);
         dfs.addEdge(0, 2);
         dfs.addEdge(1, 3);
         dfs.addEdge(2, 4);
         dfs.addEdge(2, 5);
+
+        /*
+                0
+               / \
+              1   2
+             /   / \
+            3   4   5
+
+        */
+
 
         System.out.println("Depth-First Traversal (starting from vertex 0):");
         List<Integer> traversal = dfs.dfs(0);
