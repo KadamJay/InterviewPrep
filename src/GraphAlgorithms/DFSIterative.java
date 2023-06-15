@@ -1,64 +1,52 @@
 package GraphAlgorithms;
 
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
-/**
- * Depth-First Search (DFS) algorithm for graph traversal.
- */
 public class DFSIterative {
     private int numVertices;
     private List<List<Integer>> adjacencyList;
-    private boolean[] visited;
 
-    /**
-     * Initializes the DFSIterative object with the specified number of vertices.
-     *
-     * @param numVertices the number of vertices in the graph
-     */
     public DFSIterative(int numVertices) {
         this.numVertices = numVertices;
         adjacencyList = new ArrayList<>(numVertices);
-        visited = new boolean[numVertices];
 
         for (int i = 0; i < numVertices; i++) {
             adjacencyList.add(new ArrayList<>());
         }
     }
 
-    /**
-     * Adds an edge between the source and destination vertices.
-     *
-     * @param source      the source vertex
-     * @param destination the destination vertex
-     */
     public void addEdge(int source, int destination) {
         adjacencyList.get(source).add(destination);
     }
 
-    /**
-     * Performs Depth-First Search (DFS) traversal starting from the specified vertex.
-     *
-     * @param startVertex the starting vertex for DFS traversal
-     */
-    public void dfs(int startVertex) {
-        visited[startVertex] = true;
-        System.out.print(startVertex + " ");
+    public List<Integer> dfs(int startVertex) {
+        List<Integer> traversal = new ArrayList<>();
+        boolean[] visited = new boolean[numVertices];
+        Stack<Integer> stack = new Stack<>();
 
-        List<Integer> neighbors = adjacencyList.get(startVertex);
-        for (int neighbor : neighbors) {
-            if (!visited[neighbor]) {
-                dfs(neighbor);
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            int currentVertex = stack.pop();
+
+            if (!visited[currentVertex]) {
+                visited[currentVertex] = true;
+                traversal.add(currentVertex);
+
+                List<Integer> neighbors = adjacencyList.get(currentVertex);
+                for (int neighbor : neighbors) {
+                    if (!visited[neighbor]) {
+                        stack.push(neighbor);
+                    }
+                }
             }
         }
+
+        return traversal;
     }
 
-    /**
-     * Unit test cases for DFSIterative class.
-     *
-     * @param args the command-line arguments
-     */
     public static void main(String[] args) {
         DFSIterative dfs = new DFSIterative(6);
         dfs.addEdge(0, 1);
@@ -68,7 +56,10 @@ public class DFSIterative {
         dfs.addEdge(2, 5);
 
         System.out.println("Depth-First Traversal (starting from vertex 0):");
-        dfs.dfs(0);
+        List<Integer> traversal = dfs.dfs(0);
+        for (int vertex : traversal) {
+            System.out.print(vertex + " ");
+        }
         System.out.println();
     }
 }

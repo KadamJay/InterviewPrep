@@ -4,74 +4,66 @@ package GraphAlgorithms;
  * @author jakadam on 2019-12-26
  */
 
-// Java program to print BFS traversal from a given source vertex.
-// BFS(int s) traverses vertices reachable from s.
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
-// This class represents a directed graph using adjacency list
-// representation
-class BFS {
-    /**
-     * 1. For Graph as well we will use the Queue for performing the BFS.
-     * 2. We will use the boolean[] to keep a track of the nodes because unlike tree during traversal
-     *    we might keep moving into the circles by visiting same nodes repeatedly.
-     * 3. In our example we are using adjacency List for the Graph Representation.
-     *
-     */
+public class BFS {
+    private int numVertices;
+    private List<List<Integer>> adjacencyList;
 
-    // iterative BFS
-    public static void BFSHelper(Graph g) {
-        System.out.println("Running BFS iteratively");
-        Set<Integer> visited= new HashSet<>();
-        Queue<Integer> queue = new LinkedList<>();
+    public BFS(int numVertices) {
+        this.numVertices = numVertices;
+        adjacencyList = new ArrayList<>(numVertices);
 
-        //add root to the stack
-        int root = 0;
-        queue.add(root);
-
-        while (queue.isEmpty() == false) {
-            //pop the node from stack, mark it as visited
-            int node = queue.poll();
-
-            //print the traversed node
-            System.out.print(" " + node);
-            visited.add(node);
-
-            //get the list of neighbour of the current node and them to the stack, if they are not already
-            //explored, for further exploration
-            LinkedList<Integer> neighbours = g.neighbours[node];
-
-            for (int neighbour : neighbours) {
-                if (visited.add(neighbour) == false) {
-                    queue.add(neighbour);
-                    // mark the neighbour as visited
-                    visited.add(neighbour);
-                }
-            }
+        for (int i = 0; i < numVertices; i++) {
+            adjacencyList.add(new ArrayList<>());
         }
     }
 
-    public static void main(String args[]) {
-        Graph graph = new Graph(6);
-        graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 3);
-        graph.addEdge(3, 4);
-        graph.addEdge(2, 3);
-        graph.addEdge(4, 0);
-        graph.addEdge(4, 1);
-        graph.addEdge(4, 5);
+    public void addEdge(int source, int destination) {
+        adjacencyList.get(source).add(destination);
+    }
 
-        System.out.println("\nPrinting the Graph :");
-        graph.printGraph();
+    public List<Integer> bfs(int startVertex) {
+        List<Integer> traversal = new ArrayList<>();
+        boolean[] visited = new boolean[numVertices];
+        Queue<Integer> queue = new LinkedList<>();
 
-        System.out.println("\n\nFollowing is Depth First Traversal");
-        BFSHelper(graph);
+        visited[startVertex] = true;
+        queue.offer(startVertex);
 
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            traversal.add(currentVertex);
+
+            List<Integer> neighbors = adjacencyList.get(currentVertex);
+            for (int neighbor : neighbors) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.offer(neighbor);
+                }
+            }
+        }
+
+        return traversal;
+    }
+
+    public static void main(String[] args) {
+        BFS bfs = new BFS(6);
+        bfs.addEdge(0, 1);
+        bfs.addEdge(0, 2);
+        bfs.addEdge(1, 3);
+        bfs.addEdge(2, 4);
+        bfs.addEdge(2, 5);
+
+        System.out.println("Breadth-First Traversal (starting from vertex 0):");
+        List<Integer> traversal = bfs.bfs(0);
+        for (int vertex : traversal) {
+            System.out.print(vertex + " ");
+        }
+        System.out.println();
     }
 }
 

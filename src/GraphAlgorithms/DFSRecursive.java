@@ -1,22 +1,13 @@
 package GraphAlgorithms;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Depth-First Search (DFS) algorithm for graph traversal using recursion.
- */
 public class DFSRecursive {
     private int numVertices;
     private List<List<Integer>> adjacencyList;
     private boolean[] visited;
 
-    /**
-     * Initializes the DFSRecursive object with the specified number of vertices.
-     *
-     * @param numVertices the number of vertices in the graph
-     */
     public DFSRecursive(int numVertices) {
         this.numVertices = numVertices;
         adjacencyList = new ArrayList<>(numVertices);
@@ -27,38 +18,28 @@ public class DFSRecursive {
         }
     }
 
-    /**
-     * Adds an edge between the source and destination vertices.
-     *
-     * @param source      the source vertex
-     * @param destination the destination vertex
-     */
     public void addEdge(int source, int destination) {
         adjacencyList.get(source).add(destination);
     }
 
-    /**
-     * Performs Depth-First Search (DFS) traversal starting from the specified vertex.
-     *
-     * @param startVertex the starting vertex for DFS traversal
-     */
-    public void dfs(int startVertex) {
-        visited[startVertex] = true;
-        System.out.print(startVertex + " ");
+    public List<Integer> dfs(int startVertex) {
+        List<Integer> traversal = new ArrayList<>();
+        dfsRecursive(startVertex, traversal);
+        return traversal;
+    }
 
-        List<Integer> neighbors = adjacencyList.get(startVertex);
+    private void dfsRecursive(int vertex, List<Integer> traversal) {
+        visited[vertex] = true;
+        traversal.add(vertex);
+
+        List<Integer> neighbors = adjacencyList.get(vertex);
         for (int neighbor : neighbors) {
             if (!visited[neighbor]) {
-                dfs(neighbor);
+                dfsRecursive(neighbor, traversal);
             }
         }
     }
 
-    /**
-     * Unit test cases for DFSRecursive class.
-     *
-     * @param args the command-line arguments
-     */
     public static void main(String[] args) {
         DFSRecursive dfs = new DFSRecursive(6);
         dfs.addEdge(0, 1);
@@ -68,7 +49,10 @@ public class DFSRecursive {
         dfs.addEdge(2, 5);
 
         System.out.println("Depth-First Traversal (starting from vertex 0):");
-        dfs.dfs(0);
+        List<Integer> traversal = dfs.dfs(0);
+        for (int vertex : traversal) {
+            System.out.print(vertex + " ");
+        }
         System.out.println();
     }
 }
