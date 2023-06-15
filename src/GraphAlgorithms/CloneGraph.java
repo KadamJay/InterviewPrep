@@ -22,7 +22,7 @@ package GraphAlgorithms;
  An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of
  neighbors of a node in the graph.
 
- The given node will always be the first node with val = 1. You must return the copy of the given node as a reference to
+ The given node will always be the first node with val = 1. You must return the clonedVertex of the given node as a reference to
  the cloned graph.
 
 
@@ -56,29 +56,36 @@ class Vertex {
 }
 
 class CloneGraph {
-    public Vertex cloneGraph(Vertex node) {
-        if (node == null)
+    public Vertex cloneGraph(Vertex root) {
+        if (root == null)
             return null;
 
-        Vertex copy = new Vertex(node.val);
+        Vertex clonedGraph = new Vertex(root.val);
+        
+        // create an array of Node(not boolean) to add all the adjacent nodes of particular vertex, 
+        // whether it's visited or not, so in the Vertex[] initially null is stored, if that node is visited, 
+        // we will store the respective node at the index, and can retrieve that easily.
         Vertex[] visited = new Vertex[101];
+        
         Arrays.fill(visited, null);
 
-        dfs(node, copy, visited);
+        dfs(root, clonedGraph, visited);
 
-        return copy;
+        return clonedGraph;
     }
 
-    private void dfs(Vertex node, Vertex copy, Vertex[] visited) {
-        visited[copy.val] = copy;
+    private void dfs(Vertex originalNode, Vertex clonedNode, Vertex[] visited) {
+        visited[clonedNode.val] = clonedNode;
 
-        for (Vertex neighbor : node.neighbors) {
+        for (Vertex neighbor : originalNode.neighbors) {
             if (visited[neighbor.val] == null) {
                 Vertex newNeighbor = new Vertex(neighbor.val);
-                copy.neighbors.add(newNeighbor);
+                clonedNode.neighbors.add(newNeighbor);
                 dfs(neighbor, newNeighbor, visited);
             } else {
-                copy.neighbors.add(visited[neighbor.val]);
+                // node already visited, retrieve it from visited array and add it as adjacent node of cloned node
+                // This is the point why we used vertex[] instead of boolean[] array
+                clonedNode.neighbors.add(visited[neighbor.val]);
             }
         }
     }
@@ -105,14 +112,14 @@ class CloneGraphTest {
         node4.neighbors.add(node1);
         node4.neighbors.add(node3);
 
-        Vertex clonedGraph = solution.cloneGraph(node1);
+        Vertex clonedVertex = solution.cloneGraph(node1);
 
         // Verify the cloned graph
         System.out.println("Original Graph:");
         printGraph(node1);
 
         System.out.println("Cloned Graph:");
-        printGraph(clonedGraph);
+        printGraph(clonedVertex);
     }
 
     private static void printGraph(Vertex node) {
