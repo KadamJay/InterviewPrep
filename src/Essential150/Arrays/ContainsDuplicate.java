@@ -1,24 +1,25 @@
 package Essential150.Arrays;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /*
- Problem    :   https://leetcode.com/problems/contains-duplicate/
- Solutions  :   https://youtu.be/3OamzN90kPg
- Approaches :
- 
-    | No. | Approach                             | Time Complexity | Space Complexity |
-    |-----|--------------------------------------|-----------------|------------------|
-    |  1  | Sorting                              |   O(n log n)    |       O(1)       |
-    |-----|--------------------------------------|-----------------|------------------|
-    |  2  | Compare each element with every other|      O(n^2)     |       O(1)       |
-    |     | element using nested loops           |                 |                  |
-    |-----|--------------------------------------|-----------------|------------------|
-    |  3  | Set                                  |       O(n)      |       O(n)       |
+Problem    :   https://leetcode.com/problems/contains-duplicate/
+Solutions  :   https://youtu.be/3OamzN90kPg
+Approaches :
+
+| No. | Approach                             | Time Complexity | Space Complexity |
+|-----|--------------------------------------|-----------------|------------------|
+|  1  | Sorting                              |   O(n log n)    |       O(1)       |
+|-----|--------------------------------------|-----------------|------------------|
+|  2  | Compare each element with every other|      O(n^2)     |       O(1)       |
+|     | element using nested loops           |                 |                  |
+|-----|--------------------------------------|-----------------|------------------|
+|  3  | Set                                  |       O(n)      |       O(n)       |
 
 
  */
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class ContainsDuplicate {
     public boolean containsDuplicate(int[] nums) {
         Set<Integer> hash = new HashSet<>();
