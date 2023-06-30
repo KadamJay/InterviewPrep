@@ -6,8 +6,8 @@ import java.util.List;
 public class RotatedArraySearch {
     public static void main(String args[]) {
         final RotatedArraySearchSolver solver = new RotatedArraySearchSolver();
-        //List<Integer> arr = Arrays.asList(11,12,2,3,5,8);
-        //List<Integer> arr = Arrays.asList(2,3,5,8,11,12);
+        // List<Integer> arr = Arrays.asList(11,12,2,3,5,8);
+        // List<Integer> arr = Arrays.asList(2,3,5,8,11,12);
 
         List<Integer> arr = Arrays.asList(40342, 40766, 41307, 42639, 42777, 46079,
                 47038, 47923, 48064, 48083, 49760, 49871, 51000, 51035, 53186, 53499,
@@ -22,35 +22,36 @@ public class RotatedArraySearch {
                 25524, 27311, 27609, 28217, 30854, 32721, 33184, 34190, 35040, 35753,
                 36144, 37342);
 
-        int len=arr.size();
-        int minIndex=solver.solve(arr, len,350);
-        //expected:71
+        int len = arr.size();
+        int minIndex = solver.solve(arr, len, 350);
+        // expected:71
         System.out.println(minIndex);
     }
 }
 
 class RotatedArraySearchSolver {
-    public int solve(List<Integer> arr, int len, int x){
-        int low=0, high=len-1;
+    public int solve(List<Integer> arr, int len, int x) {
+        int low = 0, high = len - 1;
 
-        while(low<=high){
-            int mid=(low+high)/2;
-            //case 1: found the element at mid
-            if(arr.get(mid)==x)
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            // case 1: found the element at mid
+            if (arr.get(mid) == x)
                 return mid;
-            else if(arr.get(low)<=arr.get(mid)){//case 2:left half is sorted
-                //case 2.1: check if x lies in the sorted half, if yes adjust bounds to search sorted half
-                if(x>arr.get(low) && x<arr.get(mid))
-                    high=mid-1;
-                else //case 2.2: x lies in the unsorted half,adjust bounds to search sorted half
-                    low=mid+1;
-            }
-            else if(arr.get(mid)<=arr.get(high)){//case 3: right sub array is sorted
-                //case 3.1: check x lies in the sorted half, if yes adjust bounds to search sorted half
-                if(x>arr.get(mid) && x<arr.get(high))
-                    low=mid+1;
-                else//case 3.2:x lies in the unsorted half,adjust bounds to search sorted half
-                    high=mid-1;
+            else if (arr.get(low) <= arr.get(mid)) {// case 2:left half is sorted
+                // case 2.1: check if x lies in the sorted half, if yes adjust bounds to search
+                // sorted half
+                if (x > arr.get(low) && x < arr.get(mid))
+                    high = mid - 1;
+                else // case 2.2: x lies in the unsorted half,adjust bounds to search sorted half
+                    low = mid + 1;
+            } else if (arr.get(mid) <= arr.get(high)) {// case 3: right sub array is sorted
+                // case 3.1: check x lies in the sorted half, if yes adjust bounds to search
+                // sorted half
+                if (x > arr.get(mid) && x < arr.get(high))
+                    low = mid + 1;
+                else// case 3.2:x lies in the unsorted half,adjust bounds to search sorted half
+                    high = mid - 1;
             }
 
         }
