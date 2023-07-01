@@ -15,7 +15,7 @@ Approaches :
 
 */
 
-class HouseRobberI {
+class HouseRobber {
     public int rob(int[] nums) {
         int len = nums.length;
 
@@ -52,7 +52,7 @@ class HouseRobberI {
     }
 
     public static void main(String[] args) {
-        HouseRobberI solution = new HouseRobberI();
+        HouseRobber solution = new HouseRobber();
 
         // Test rob method
         int[] nums1 = { 1, 2, 3, 1 };
