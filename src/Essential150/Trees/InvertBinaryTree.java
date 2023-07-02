@@ -1,5 +1,17 @@
 package Essential150.Trees;
 
+/*
+    Problem    :   https://leetcode.com/problems/invert-binary-tree/
+    Solutions  :   https://youtu.be/OnSn2XEQ4MY
+    Approaches :
+
+    | No. | Approach                             | Time Complexity | Space Complexity |
+    |-----|--------------------------------------|-----------------|------------------|
+    |  1  | Iterative                            |     O(n)        |       O(n)       |
+    |-----|--------------------------------------|-----------------|------------------|
+    |  2  | Recursive                            |     O(n)        |       O(n)       |
+
+ */
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +20,7 @@ class InvertBinaryTree {
         if (root == null)
             return null;
 
-        // using post-order L-R-N
+        // Using post-order L-R-N
         // Swap left and right subtrees recursively
         TreeNode left = invertTreeRecursive(root.left);
         TreeNode right = invertTreeRecursive(root.right);
@@ -36,7 +48,6 @@ class InvertBinaryTree {
             node.left = node.right;
             node.right = temp;
 
-            // Enqueue the left and right child nodes if they exist
             if (node.left != null)
                 queue.offer(node.left);
             if (node.right != null)
