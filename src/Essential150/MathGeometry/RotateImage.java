@@ -1,5 +1,23 @@
 package Essential150.MathGeometry;
 
+/*
+
+Problem    :   https://leetcode.com/problems/rotate-image/
+Solutions  :   https://youtu.be/fMSJSS7eO1w
+Approaches :
+
+| No. | Approach                             | Time Complexity | Space Complexity |
+|-----|--------------------------------------|-----------------|------------------|
+|  1  | Traversal                            |       O(n^2)    |       O(1)       |
+
+Time Complexity: Both rotateI and rotateII methods have a time complexity of O(N^2), 
+where N is the number of rows (or columns) in the matrix. This is because the methods 
+involve two nested loops that iterate through the matrix elements.
+
+Space Complexity: The space complexity is O(1) since the rotation is performed in-place 
+without using any additional data structures that depend on the size of the input.
+
+*/
 class RotateImage {
     public void rotateI(int[][] matrix) {
         int n = matrix.length;
