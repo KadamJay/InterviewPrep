@@ -1,7 +1,7 @@
 package Essential150.Intervals;
 
 /*
-Problem    :   https://www.lintcode.com/problem/920/
+Problem    :   https://leetcode.com/problems/meeting-rooms/description/
 Solutions  :   https://youtu.be/PaJxqZVPhbg
 Approaches :
 
