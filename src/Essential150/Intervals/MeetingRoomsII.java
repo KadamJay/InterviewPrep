@@ -31,8 +31,7 @@ public class MeetingRoomsII {
         int startPtr = 0, endPtr = 0;
 
         // based on start and end time, count represents the number of on-going meetings
-        // at
-        // any givent moment
+        // at any givent moment
         while (startPtr < len) {
             if (startTimes[startPtr] < endTimes[endPtr]) {
                 count++;
