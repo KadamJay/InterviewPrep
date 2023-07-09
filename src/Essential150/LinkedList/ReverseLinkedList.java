@@ -2,7 +2,7 @@ package Essential150.LinkedList;
 
 /*
 Problem    :   https://leetcode.com/problems/reverse-linked-list/
-Solutions  :   https://youtu.be/G0_I-ZF0S38
+Solutions  :   https://youtu.be/G0_I-ZF0S38 | https://www.youtube.com/watch?v=ugQ2DVJJroc
 Approaches :
 
 | No. | Approach                             | Time Complexity      | Space Complexity |

@@ -9,9 +9,6 @@ Approaches :
 |-----|--------------------------------------|----------------------|------------------|
 |  1  | Iterative                            |    O(max(N, M))      |   O(max(N, M))   |
 
-
-
-
 */
 public class AddTwoNumbers {
 
