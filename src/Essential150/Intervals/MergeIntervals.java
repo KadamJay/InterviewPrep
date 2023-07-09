@@ -23,7 +23,12 @@ public class MergeIntervals {
 
     public static int[][] merge(int[][] intervals) {
         // Sort intervals based on the start time
-        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        // Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
 
         List<int[]> mergedIntervals = new ArrayList<>();
 
