@@ -20,7 +20,7 @@ of intervals in the input array.
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeIntervals {
+public class InsertInterval {
 
     public static int[][] insert(int[][] intervals, int[] newInterval) {
         List<int[]> mergedIntervals = new ArrayList<>();
