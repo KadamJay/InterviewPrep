@@ -1,8 +1,8 @@
 package Essential150.Trees;
 
 /*
-    Problem    :   https://leetcode.com/problems/count-good-nodes-in-binary-tree/
-    Solutions  :   https://youtu.be/7cp5imvDzl4
+    Problem    :   https://leetcode.com/problems/subtree-of-another-tree/
+    Solutions  :   https://youtu.be/E36O5SWp-LE
     Approaches :
 
     | No. | Approach                             | Time Complexity | Space Complexity |
