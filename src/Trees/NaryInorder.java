@@ -1,14 +1,8 @@
 package Trees;
 
-/**
- * @author jakadam on 2021-05-27
- */
 public class NaryInorder {
-    // Class for the node of the tree
     static class Node {
         int data;
-
-        // List of children
         Node children[];
 
         Node(int n, int data) {
@@ -17,35 +11,20 @@ public class NaryInorder {
         }
     }
 
-    // Function to print the inorder traversal
-    // of the n-ary tree
     static void inorder(Node node) {
         if (node == null)
             return;
 
-        // Total children count
         int total = node.children.length;
-        // All the children except the last
         for (int i = 0; i < total - 1; i++)
             inorder(node.children[i]);
 
-        // Print the current node's data
         System.out.print("" + node.data + " ");
 
-        // Last child
         inorder(node.children[total - 1]);
     }
 
-    // Driver code
     public static void main(String[] args) {
-
-        /* Create the following tree
-                   1
-                /  |  \
-               2   3   4
-             / | \
-            5  6  7
-        */
         int n = 3;
         Node root = new Node(n, 1);
         root.children[0] = new Node(n, 2);
