@@ -1,0 +1,17 @@
+
+
+Setting a bit: To set a specific bit (e.g., the nth bit) of a number to 1, use the bitwise OR operator with a mask that has only the nth bit set, like this: num |= (1 << n).
+
+Clearing a bit: To clear a specific bit (e.g., the nth bit) of a number, use the bitwise AND operator with a mask that has all bits set except the nth bit, like this: num &= ~(1 << n).
+
+Toggling a bit: To toggle a specific bit (e.g., the nth bit) of a number, use the bitwise XOR operator with a mask that has only the nth bit set, like this: num ^= (1 << n).
+
+Checking if a bit is set: To check if a specific bit (e.g., the nth bit) of a number is set (1), use the bitwise AND operator with a mask that has only the nth bit set, and check if the result is non-zero, like this: (num & (1 << n)) != 0.
+
+Counting set bits: To count the number of set bits (1s) in a number, you can use various algorithms like the Brian Kernighan's algorithm or the lookup table method.
+
+Swapping values: To swap the values of two variables without using an extra variable, you can use the XOR trick: a ^= b; b ^= a; a ^= b;.
+
+Finding the most significant bit: To find the position of the most significant bit (leftmost set bit) in a number, you can use logarithmic time algorithms like binary search or divide-and-conquer approaches.
+
+Bit manipulation can be used for efficient operations like checking if a number is a power of two, finding the bitwise complement, checking for odd/even parity, and more.
